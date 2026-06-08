@@ -1,0 +1,37 @@
+{
+  "version": "0.1.0",
+  "updated": "2026-06-08T00:00:00Z",
+  "animes": [
+    {
+      "id": "zom-100",
+      "title": "Zom 100: Zombie ni Naru Made ni Shitai 100 no Koto",
+      "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx159831-cJUNqCqzuApc.png",
+      "description": "Despues de anos siendo un esclavo corporativo, Akira vive en un departamento lleno de basura, tiene un sueldo pesimo y ni siquiera puede confesarle su amor a su companera. Pero cuando un apocalipsis zombie arrasa su ciudad, le da el empujon que necesita para vivir para si mismo. Ahora Akira esta en una mision para completar las 100 cosas en su lista de deseos antes de... bueno, morir. (Fuente: VIZ Media)",
+      "genres": "Action, Adventure, Comedy, Horror, Supernatural",
+      "episodes": [
+        {
+          "title": "Capitulos",
+          "urls": [
+            { "name": "Capitulo 01", "url": "https://ejemplo.com/ep1.mp4" },
+            { "name": "Capitulo 02", "url": "https://ejemplo.com/ep2.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cyberpunk-edgerunners",
+      "title": "Cyberpunk: Edgerunners",
+      "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx120377-ayZPoxiWt4Li.jpg",
+      "description": "Una serie de anime original ambientada en el universo de Cyberpunk 2077.",
+      "genres": "Action, Drama, Psychological, Sci-Fi",
+      "episodes": [
+        {
+          "title": "Capitulos",
+          "urls": [
+            { "name": "Capitulo 01", "url": "https://ejemplo.com/cyber_ep1.mp4" }
+          ]
+        }
+      ]
+    }
+  ]
+}
