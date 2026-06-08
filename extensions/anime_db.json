@@ -34,4 +34,58 @@
       ]
     }
   ]
+},
+{
+  "id": "cyberpunk-edgerunners",
+  "title": "Cyberpunk: Edgerunners",
+  "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx120377-ayZPoxiWt4Li.jpg",
+  "description": "Una serie de anime original ambientada en el universo de Cyberpunk 2077. Cyberpunk: Edgerunners cuenta una historia independiente de 10 episodios sobre un chico callejero que intenta sobrevivir en una ciudad del futuro obsesionada con la tecnologia y las modificaciones corporales. Con todo por perder, elige seguir vivo convirtiendose en un edgerunner, un mercenario forajido tambien conocido como cyberpunk. (Fuente: CD PROJEKT RED)",
+  "genres": "Action, Drama, Psychological, Sci-Fi",
+  "episodes": [
+    {
+      "title": "Capitulos",
+      "urls": [
+        {
+          "name": "Capitulo 01",
+          "url": "https://1024terabox.com/s/11G9VP6nery0O8J5PiP_vUA"
+        },
+        {
+          "name": "Capitulo 02",
+          "url": "https://1024terabox.com/s/1haNNGfZDxbkNzKxIe1vbpg"
+        },
+        {
+          "name": "Capitulo 03",
+          "url": "https://1024terabox.com/s/1X5bUJCSUH3T8F3bMXh1Sew"
+        },
+        {
+          "name": "Capitulo 04",
+          "url": "https://1024terabox.com/s/1ViV95G2WvKHrygWFvYO-qg"
+        },
+        {
+          "name": "Capitulo 05",
+          "url": "https://1024terabox.com/s/1yLOqm1Lg49cOfgkR6es2lQ"
+        },
+        {
+          "name": "Capitulo 06",
+          "url": "https://1024terabox.com/s/1s5iz_h4hHJbSfEa_DhcZPw"
+        },
+        {
+          "name": "Capitulo 07",
+          "url": "https://1024terabox.com/s/1Tg8xYieKtDVmmYTw9V3Iaw"
+        },
+        {
+          "name": "Capitulo 08",
+          "url": "https://1024terabox.com/s/1oG6YnZbovcQ_z3hyts4PqQ"
+        },
+        {
+          "name": "Capitulo 09",
+          "url": "https://1024terabox.com/s/1BqEygyjkHoJKOEDG_-WPgA"
+        },
+        {
+          "name": "Capitulo 10",
+          "url": "https://1024terabox.com/s/1g1lPF2aHRCSoVjaTP6Wqow"
+        }
+      ]
+    }
+  ]
 }
