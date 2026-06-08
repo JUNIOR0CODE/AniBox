@@ -1,4 +1,4 @@
-// ==MiruExtension==
+// ==JiruHubExtension==
 // @name         AniBox Latino
 // @version      v1.0.0
 // @author       JUNIOR0CODE
@@ -9,7 +9,7 @@
 // @type         bangumi
 // @webSite      https://anibox.junior0dev.qzz.io
 // @nsfw         false
-// ==/MiruExtension==
+// ==/JiruHubExtension==
 
 const API_URL = "https://raw.githubusercontent.com/JUNIOR0CODE/AniBox/main/extensions/anime_db.json";
 const PAGE_SIZE = 20;
