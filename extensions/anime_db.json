@@ -3,17 +3,50 @@
   "updated": "2026-06-08T00:00:00Z",
   "animes": [
     {
-      "id": "zom-100",
-      "title": "Zom 100: Zombie ni Naru Made ni Shitai 100 no Koto",
-      "cover": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx159831-cJUNqCqzuApc.png",
-      "description": "Despues de anos siendo un esclavo corporativo, Akira vive en un departamento lleno de basura, tiene un sueldo pesimo y ni siquiera puede confesarle su amor a su companera. Pero cuando un apocalipsis zombie arrasa su ciudad, le da el empujon que necesita para vivir para si mismo. Ahora Akira esta en una mision para completar las 100 cosas en su lista de deseos antes de... bueno, morir. (Fuente: VIZ Media)",
-      "genres": "Action, Adventure, Comedy, Horror, Supernatural",
+      "id": "solo-leveling",
+      "title": "Solo Leveling",
+      "cover": "https://i.pinimg.com/736x/00/bf/a5/00bfa50817ba4107538d2f79da3e20c4.jpg",
+      "description": "Lo que no te mata te hace más fuerte, pero en el caso de Sung Jinwoo, lo que lo mató lo hizo más fuerte. Después de ser brutalmente asesinado por monstruos en una mazmorra de alto rango, Jinwoo regresó con el Sistema, un programa que solo él puede ver y que eleva su nivel en todos los sentidos. Ahora, está decidido a descubrir los secretos detrás de sus poderes y la mazmorra que los engendró.",
+      "genres": "Action, Adventure, Fantasy",
       "episodes": [
         {
-          "title": "Capitulos",
+          "title": "Temporada 1",
           "urls": [
             { "name": "Capitulo 01", "url": "https://ejemplo.com/ep1.mp4" },
-            { "name": "Capitulo 02", "url": "https://ejemplo.com/ep2.mp4" }
+            { "name": "Capitulo 02", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 03", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 04", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 05", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 06", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 07", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 08", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 09", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 10", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 11", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 12", "url": "https://ejemplo.com/ep2.mp4" }
+          ]
+        },
+        {
+          "title": "Pelicula",
+          "urls": [
+            { "name": "Solo Leveling: ReAwakening", "url": "https://ejemplo.com/ep1.mp4" }
+          ]
+        },
+        {
+          "title": "Temporada 2",
+          "urls": [
+            { "name": "Capitulo 13", "url": "https://ejemplo.com/ep1.mp4" },
+            { "name": "Capitulo 14", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 15", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 16", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 17", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 18", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 19", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 20", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 21", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 22", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 23", "url": "https://ejemplo.com/ep2.mp4" },
+            { "name": "Capitulo 24", "url": "https://ejemplo.com/ep2.mp4" }
           ]
         }
       ]
