@@ -1,6 +1,6 @@
 // ==JiruHubExtension==
 // @name         AniBox Latino
-// @version      v1.0.0
+// @version      v1.0.2
 // @author       JUNIOR0CODE
 // @lang         es
 // @license      MIT
@@ -13,6 +13,9 @@
 
 const API_URL = "https://raw.githubusercontent.com/JUNIOR0CODE/AniBox/main/extensions/anime_db.json";
 const PAGE_SIZE = 20;
+
+// Lista de extensiones de video compatibles con reproducción directa como MP4
+const VIDEO_EXTENSIONS = [".mp4", ".mkv", ".avi", ".mov", ".webm", ".flv", ".wmv"];
 
 export default class extends Extension {
   constructor() {
@@ -85,23 +88,40 @@ export default class extends Extension {
   }
 
   async watch(url) {
-    // Solo soporta enlaces directos .mp4
-    if (url.endsWith(".mp4")) {
+    const headers = {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
+    };
+
+    // Determinar el tipo de video basado en la extensión del archivo
+    const urlLower = url.toLowerCase();
+
+    // Soporte para HLS (m3u8)
+    if (urlLower.endsWith(".m3u8")) {
       return {
-        type: "mp4",
+        type: "hls",
         url: url,
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
-        },
+        headers: headers,
         subtitles: []
       };
     }
 
-    // Si no es .mp4, devuelve error
+    // Soporte para formatos de video directos (MP4, MKV, AVI, MOV, WebM, FLV, WMV)
+    for (const ext of VIDEO_EXTENSIONS) {
+      if (urlLower.endsWith(ext)) {
+        return {
+          type: "mp4",
+          url: url,
+          headers: headers,
+          subtitles: []
+        };
+      }
+    }
+
+    // Si no se reconoce la extensión, intentar como MP4 (por si acaso)
     return {
       type: "mp4",
-      url: "error://formato-no-soportado",
-      headers: {},
+      url: url,
+      headers: headers,
       subtitles: []
     };
   }
