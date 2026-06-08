@@ -7,7 +7,7 @@
 // @icon         https://raw.githubusercontent.com/JUNIOR0CODE/AniBox/main/icons/app.png
 // @package      anibox
 // @type         bangumi
-// @webSite      https://www.1024terabox.com
+// @webSite      https://anibox.junior0dev.qzz.io
 // @nsfw         false
 // ==/MiruExtension==
 
@@ -97,7 +97,7 @@ export default class extends Extension {
       };
     }
 
-    // Si no es .mp4, devuelve error (puedes personalizar)
+    // Si no es .mp4, devuelve error
     return {
       type: "mp4",
       url: "error://formato-no-soportado",
