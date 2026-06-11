@@ -1,6 +1,6 @@
 // ==JiruHubExtension==
 // @name         AniBox Latino
-// @version      v1.0.2
+// @version      v1.0.3
 // @author       JUNIOR0CODE
 // @lang         es
 // @license      MIT
@@ -14,7 +14,7 @@
 const API_URL = "https://raw.githubusercontent.com/JUNIOR0CODE/AniBox/main/extensions/anime_db.json";
 const PAGE_SIZE = 20;
 
-// Lista de extensiones de video compatibles con reproducción directa como MP4
+// Lista de extensiones de video compatibles con reproducción directa
 const VIDEO_EXTENSIONS = [".mp4", ".mkv", ".avi", ".mov", ".webm", ".flv", ".wmv"];
 
 export default class extends Extension {
@@ -92,7 +92,34 @@ export default class extends Extension {
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
     };
 
-    // Determinar el tipo de video basado en la extensión del archivo
+    // --- NUEVA LÓGICA PARA STREAMTAPE ---
+    if (url.includes("streamtape.com")) {
+      try {
+        // Cargamos la página de streamtape para extraer la URL directa del video
+        const pageHtml = await this.request(url);
+        // Buscamos un patrón para encontrar la URL del video (mp4)
+        // El patrón captura cualquier URL que termine en .mp4
+        const videoMatch = pageHtml.match(/https?:\/\/[^\s"']+\.mp4/);
+        if (videoMatch && videoMatch[0]) {
+          const directUrl = videoMatch[0];
+          console.log("[AniBox] Streamtape video encontrado: " + directUrl);
+          return {
+            type: "mp4",
+            url: directUrl,
+            headers: headers,
+            subtitles: []
+          };
+        } else {
+          console.log("[AniBox] No se pudo extraer la URL del video de Streamtape");
+        }
+      } catch (error) {
+        console.log("[AniBox] Error al procesar Streamtape: " + String(error));
+      }
+    }
+
+    // --- FIN DE LA LÓGICA PARA STREAMTAPE ---
+
+    // Determinar el tipo de video basado en la extensión del archivo (para otros enlaces)
     const urlLower = url.toLowerCase();
 
     // Soporte para HLS (m3u8)
@@ -105,7 +132,7 @@ export default class extends Extension {
       };
     }
 
-    // Soporte para formatos de video directos (MP4, MKV, AVI, MOV, WebM, FLV, WMV)
+    // Soporte para formatos de video directos (MP4, MKV, etc.)
     for (const ext of VIDEO_EXTENSIONS) {
       if (urlLower.endsWith(ext)) {
         return {
@@ -117,7 +144,7 @@ export default class extends Extension {
       }
     }
 
-    // Si no se reconoce la extensión, intentar como MP4 (por si acaso)
+    // Si no se reconoce la extensión ni es streamtape, intentar como MP4
     return {
       type: "mp4",
       url: url,
