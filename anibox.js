@@ -1,6 +1,6 @@
 // ==JiruHubExtension==
 // @name         AniBox Latino
-// @version      v1.0.3
+// @version      v1.0.4
 // @author       JUNIOR0CODE
 // @lang         es
 // @license      MIT
@@ -87,25 +87,55 @@ export default class extends Extension {
     return { title: anime.title, cover: anime.cover, desc: anime.description || "", episodes: episodesOut };
   }
 
+  // Función auxiliar para asegurar URLs absolutas
+  _ensureAbsoluteUrl(url) {
+    if (!url) return "";
+    url = url.trim();
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    // Si no tiene protocolo, asumimos https
+    return "https://" + url;
+  }
+
   async watch(url) {
+    console.log("[AniBox] URL recibida para reproducir:", url);
+
     const headers = {
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
     };
 
-    // --- NUEVA LÓGICA PARA STREAMTAPE ---
+    // --- LÓGICA PARA STREAMTAPE ---
     if (url.includes("streamtape.com")) {
       try {
-        // Cargamos la página de streamtape para extraer la URL directa del video
-        const pageHtml = await this.request(url);
-        // Buscamos un patrón para encontrar la URL del video (mp4)
-        // El patrón captura cualquier URL que termine en .mp4
-        const videoMatch = pageHtml.match(/https?:\/\/[^\s"']+\.mp4/);
-        if (videoMatch && videoMatch[0]) {
-          const directUrl = videoMatch[0];
-          console.log("[AniBox] Streamtape video encontrado: " + directUrl);
+        // Asegurar URL absoluta antes de hacer la petición
+        const streamPageUrl = this._ensureAbsoluteUrl(url);
+        console.log("[AniBox] Solicitando página de Streamtape:", streamPageUrl);
+        const pageHtml = await this.request(streamPageUrl);
+
+        // Buscar la URL real del video (método más fiable)
+        // Opción 1: script que asigna innerHTML a un elemento con id 'ideooolink'
+        let videoUrl = null;
+        const matchScript = pageHtml.match(/getElementById\('ideooolink'\)\.innerHTML = "([^"]+)"/);
+        if (matchScript && matchScript[1]) {
+          videoUrl = matchScript[1];
+          console.log("[AniBox] URL encontrada con método 1:", videoUrl);
+        } else {
+          // Opción 2: buscar cualquier URL que termine en .mp4
+          const matchMp4 = pageHtml.match(/https?:\/\/[^\s"']+\.mp4/);
+          if (matchMp4 && matchMp4[0]) {
+            videoUrl = matchMp4[0];
+            console.log("[AniBox] URL encontrada con método 2:", videoUrl);
+          }
+        }
+
+        if (videoUrl) {
+          // Asegurar que la URL del video sea absoluta (ya debería serlo)
+          const finalUrl = this._ensureAbsoluteUrl(videoUrl);
           return {
             type: "mp4",
-            url: directUrl,
+            url: finalUrl,
+            tryProxyUrl: true,  // Evita errores de SSL / contenido mixto
             headers: headers,
             subtitles: []
           };
@@ -113,20 +143,20 @@ export default class extends Extension {
           console.log("[AniBox] No se pudo extraer la URL del video de Streamtape");
         }
       } catch (error) {
-        console.log("[AniBox] Error al procesar Streamtape: " + String(error));
+        console.log("[AniBox] Error al procesar Streamtape:", error);
       }
     }
-
     // --- FIN DE LA LÓGICA PARA STREAMTAPE ---
 
-    // Determinar el tipo de video basado en la extensión del archivo (para otros enlaces)
-    const urlLower = url.toLowerCase();
+    // Para el resto de URLs, normalizamos y detectamos formato
+    const normalUrl = this._ensureAbsoluteUrl(url);
+    const urlLower = normalUrl.toLowerCase();
 
     // Soporte para HLS (m3u8)
     if (urlLower.endsWith(".m3u8")) {
       return {
         type: "hls",
-        url: url,
+        url: normalUrl,
         headers: headers,
         subtitles: []
       };
@@ -137,17 +167,17 @@ export default class extends Extension {
       if (urlLower.endsWith(ext)) {
         return {
           type: "mp4",
-          url: url,
+          url: normalUrl,
           headers: headers,
           subtitles: []
         };
       }
     }
 
-    // Si no se reconoce la extensión ni es streamtape, intentar como MP4
+    // Si no se reconoce, intentar como MP4 directo (puede fallar si no es un video)
     return {
       type: "mp4",
-      url: url,
+      url: normalUrl,
       headers: headers,
       subtitles: []
     };
